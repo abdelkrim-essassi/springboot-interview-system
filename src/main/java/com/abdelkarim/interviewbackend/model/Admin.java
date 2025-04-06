@@ -1,6 +1,5 @@
 package com.abdelkarim.interviewbackend.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,6 +13,5 @@ import lombok.NoArgsConstructor;
 @Table(name = "admins")
 public class Admin extends User {
 
-    // we have to add our methods
 
 }

@@ -1,4 +1,4 @@
 package com.abdelkarim.interviewbackend.dto;
 
-public class CondidateDTO {
+public class UserDTO {
 }
