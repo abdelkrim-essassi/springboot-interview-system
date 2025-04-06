@@ -17,8 +17,4 @@ public class UserController {
         this.userService = userService;  // Inject UserService
     }
 
-    @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable int userId) {
-        return userService.getUserById(userId); // Call the instance method
-    }
 }
