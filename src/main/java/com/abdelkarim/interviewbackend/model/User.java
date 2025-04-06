@@ -15,10 +15,10 @@ public abstract class User {
     private Long id;
 
     @Column(nullable = false)
-    private String FirstName;
+    private String firstName;
 
     @Column(nullable = false)
-    private String LastName;
+    private String lastName;
 
     @Column(nullable = false)
     private String role;

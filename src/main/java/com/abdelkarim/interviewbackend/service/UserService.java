@@ -13,7 +13,7 @@ public class UserService {
 
     public User getUserById(int userId) {
         return users.stream()
-                .filter(p -> p.getId() == userId)
+                .filter(u -> u.getId() == userId)
                 .findFirst()
                 .orElse(null);
     }

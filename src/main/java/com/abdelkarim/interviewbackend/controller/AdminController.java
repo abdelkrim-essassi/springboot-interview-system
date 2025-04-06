@@ -25,6 +25,10 @@ public class AdminController {
         return userService.getUserById(userId);
     }
 
+    public User UpdateUsers(@PathVariable int userId) {
+        return userService.getUserById(userId);
+    }
+
     @GetMapping("/users/{userId}")
     public User DeleteUser(@PathVariable int userId) {
         return userService.DeleteUser(userId);
