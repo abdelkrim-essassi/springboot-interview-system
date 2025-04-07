@@ -6,12 +6,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface AdminService {
-    String addAdmin(AdminDTO authorSaveDTO);
+public class AdminService {
+    public String addAdmin(AdminDTO authorSaveDTO) {
+        //I will add later
+        return null;
+    };
 
-    List<AdminDTO> getAllAdmin();
+    public List<AdminDTO> getAllAdmin() {
+        //I will add later
+        return null;
+    };
 
-    String updateAdmin(AdminDTO adminUpdateDTO);
+    public String updateAdmin(AdminDTO adminUpdateDTO) {
+        //I will add later
+        return null;
+    };
 
-    String deleteAdmin(int id);
+    public String deleteAdmin(int id ){
+        //I will add later
+        return null;
+    };
 }

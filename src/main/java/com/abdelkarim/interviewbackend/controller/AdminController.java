@@ -3,6 +3,8 @@ package com.abdelkarim.interviewbackend.controller;
 import com.abdelkarim.interviewbackend.model.User;
 import com.abdelkarim.interviewbackend.service.JobOfferService;
 import com.abdelkarim.interviewbackend.service.UserService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 @RestController
 public class AdminController {
-    private final UserService userService;
-    private final JobOfferService jobOfferService;
+    private UserService userService;
+    private JobOfferService jobOfferService;
 
     public AdminController(UserService userService, JobOfferService jobOfferService) {
         this.userService = userService;
@@ -23,19 +25,41 @@ public class AdminController {
         return userService.getUserById(userId);
     }
 
+
     @GetMapping("/addUser")
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public ResponseEntity<String> addUser(@RequestBody User user) {
+        User savedUser = userService.addUser(user);
+
+        if (savedUser != null) {
+            return new ResponseEntity<>("User added successfully", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Failed to add user", HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @GetMapping("/UpdateUsers")
-    public User UpdateUsers(@RequestBody int userId) {
-        return userService.updateUsers(userId);
+
+    @GetMapping("/UpdateUser/{id}")
+    public ResponseEntity<String> updateUser(@RequestBody int id, @RequestBody User user) {
+        boolean isUpdated = userService.updateUser(id,user);
+
+        if (isUpdated) {
+            return new ResponseEntity<>( "User Updated Successfully", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>("User Not Found", HttpStatus.NOT_FOUND);
+        }
+
     }
 
-    @GetMapping("/DeleteUser")
-    public User DeleteUser(@RequestBody int userId) {
-        return userService.DeleteUser(userId);
+    @DeleteMapping("/DeleteUser/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        boolean isDeleted = userService.deleteUser(id);
+
+        if (isDeleted) {
+            return new ResponseEntity<>("User deleted successfully", HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/dashboard")
@@ -48,6 +72,4 @@ public class AdminController {
         // Admin logic to manage users
         return "redirect:/admin/dashboard";
     }
-
-
 }

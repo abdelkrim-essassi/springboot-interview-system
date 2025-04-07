@@ -1,35 +1,36 @@
 package com.abdelkarim.interviewbackend.service;
 
 import com.abdelkarim.interviewbackend.model.User;
+import com.abdelkarim.interviewbackend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-    // To complete these methods I have to import data first
 @Service
 public class UserService {
-    List<User> users = new ArrayList<>(Arrays.asList());
+    @Autowired
+    private UserRepository userRepository;
+
 
     public User getUserById(int userId) {
-        return users.stream()
-                .filter(u -> u.getId() == userId)
-                .findFirst()
-                .orElse(null);
+        return userRepository.
+
     }
 
-    public User DeleteUser(int userId) {
-        // Compliting it later
-        return null;
-    }
+        public boolean deleteUser(Long id) {
+            if (userRepository.existsById(id)) {
+                userRepository.deleteById(id);
+                return true;
+            }
+            return false;
+        }
 
-    public User updateUsers(int userId) {
+    public boolean updateUser(long id, User user) {
         // Compliting it later
-        return null;
+        return true;
     }
 
         public User addUser(User user) {
-        // Compliting it later
+        // Compliting it later..
             return null;
         }
     }
