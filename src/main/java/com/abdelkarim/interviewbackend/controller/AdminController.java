@@ -4,16 +4,16 @@ import com.abdelkarim.interviewbackend.dto.UserDTO;
 import com.abdelkarim.interviewbackend.model.User;
 import com.abdelkarim.interviewbackend.service.JobOfferService;
 import com.abdelkarim.interviewbackend.service.UserService;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// I have to wrap UserDTO (business logic) to ResponseEntity ()
 
 @RequestMapping("/admin")
 @RestController
 public class AdminController {
-    private UserService userService;
+    private final UserService userService; // Fina ??
     private JobOfferService jobOfferService;
 
     public AdminController(UserService userService, JobOfferService jobOfferService) {
@@ -21,8 +21,14 @@ public class AdminController {
         this.jobOfferService = jobOfferService;
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<String> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+
     @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable Long userId) {
+    public ResponseEntity<String> getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 
@@ -73,4 +79,5 @@ public class AdminController {
         // Admin logic to manage users
         return "redirect:/admin/dashboard";
     }
+
 }
