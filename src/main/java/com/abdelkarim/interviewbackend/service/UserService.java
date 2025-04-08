@@ -45,8 +45,13 @@ public class UserService {
         return true;
     }
 
-        public User addUser(User user) {
-        // Compliting it later..
-            return null;
-        }
+    public UserDTO createUser(User userDTO) {
+        User user = new User();
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword("hashed_password");
+        userRepository.save(user);
+        return convertToDTO(user);
+    }
     }

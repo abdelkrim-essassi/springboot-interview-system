@@ -1,5 +1,6 @@
 package com.abdelkarim.interviewbackend.controller;
 
+import com.abdelkarim.interviewbackend.dto.UserDTO;
 import com.abdelkarim.interviewbackend.model.User;
 import com.abdelkarim.interviewbackend.service.JobOfferService;
 import com.abdelkarim.interviewbackend.service.UserService;
@@ -27,8 +28,8 @@ public class AdminController {
 
 
     @GetMapping("/addUser")
-    public ResponseEntity<String> addUser(@RequestBody User user) {
-        User savedUser = userService.addUser(user);
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        UserDTO savedUser = userService.createUser(user);
 
         if (savedUser != null) {
             return new ResponseEntity<>("User added successfully", HttpStatus.CREATED);
@@ -39,7 +40,7 @@ public class AdminController {
 
 
     @GetMapping("/UpdateUser/{id}")
-    public ResponseEntity<String> updateUser(@RequestBody int id, @RequestBody User user) {
+    public ResponseEntity<String> updateUser(@RequestBody Long id, @RequestBody User user) {
         boolean isUpdated = userService.updateUser(id,user);
 
         if (isUpdated) {
