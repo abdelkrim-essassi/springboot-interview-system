@@ -17,7 +17,7 @@ public class UserService {
     private UserRepository userRepository;
 
     private UserDTO convertToDTO(User user) {
-        return new UserDTO(user.getId(), user.getFirstName(),user.getLastName(), user.getEmail());
+        return new UserDTO(user.getId(), user.getFirstName(),user.getLastName(), user.getEmail(), user.getRole());
     }
 
 
